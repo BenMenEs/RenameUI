@@ -1,0 +1,9 @@
+name: RenameUI
+main: BenMenEs\RenameUI\Main
+version: 0.0.1
+api: 3.0.0
+author: BenMenEs
+website: github.com/benmenes/renameui
+permissions:
+  rename.cmd:
+    default: op
