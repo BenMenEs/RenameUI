@@ -1,6 +1,6 @@
 <?php
 
-namespace BenMenEs\RenameUI;
+namespace BenMenEs\RenameUI\form;
 
 use BenMenEs\RenameUI\Main;
 use jojoe77777\FormAPI\CustomForm;
@@ -21,8 +21,8 @@ class RenameForm{
                 $player->sendMessage($main->config['empty-name']);
                 return;
             }
-            $main->rename($player, $player->getInventory()->getItemInHand(), $player->getInventory()->getItemInHand()->name, $data[1]);
-        }
+            $main->rename($player, $player->getInventory()->getItemInHand(), $player->getInventory()->getItemInHand()->getName(), $data[1]);
+        });
         $form->sendToPlayer($player);
     }
 }

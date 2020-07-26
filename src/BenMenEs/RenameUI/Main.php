@@ -12,12 +12,16 @@ use pocketmine\Player;
 class Main extends PluginBase{
 
     /** @var Config */
-    protected $config;
+    public $config;
+    
+    /** @var Main */
+    private static $instance;
 
     /**
      * @return void
      */
     public function onLoad() : void{
+    	self::$instance = $this;
         $this->getServer()->getCommandMap()->register("rename", new Rename($this));
     }
 
@@ -28,12 +32,16 @@ class Main extends PluginBase{
         $this->saveDefaultConfig();
         $this->config = $this->getConfig()->getAll();
     }
+  
+    private static function getInstance(){
+    	return self::$instance;
+    }
 
     /**
      * @param Player $player
      * @return void
      */
-    public static function openRenameForm(Player $player) : void{
+    public function openRenameForm(Player $player) : RenameForm{
         return new RenameForm($this, $player);
     }
 
@@ -50,6 +58,7 @@ class Main extends PluginBase{
             return;
         }
         $item->setCustomName($newName);
+        $player->getInventory()->setItemInHand($item);
         $player->sendMessage($ev->getRenameMessage());
     }
 }

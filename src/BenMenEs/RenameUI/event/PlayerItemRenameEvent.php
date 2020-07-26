@@ -68,6 +68,7 @@ class PlayerItemRenameEvent extends PluginEvent implements Cancellable{
     }
 
     /**
+     * @param string $message
      * @return void
      */
     public function setRenameMessage(string $message) : void{

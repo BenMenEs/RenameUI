@@ -1,11 +1,13 @@
 <?php
 
+namespace BenMenEs\RenameUI\command;
+
 use BenMenEs\RenameUI\Main;
 use pocketmine\Player;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
-use pocketmine\block\Air;
+use pocketmine\plugin\Plugin;
 
 class Rename extends Command implements PluginIdentifiableCommand{
 
@@ -13,9 +15,16 @@ class Rename extends Command implements PluginIdentifiableCommand{
     private $main;
 
     public function __construct(Main $main){
-        parent::__construct("rename", $main->config['cmd-description'], $main->config['cmd-usage']);
+        parent::__construct("rename", "Rename item");
         $this->setPermission("rename.cmd");
         $this->main = $main;
+    }
+    
+    /**
+     * @return Plugin
+     */
+    public function getPlugin() : Plugin{
+    	return $this->main;
     }
 
     /**
@@ -28,10 +37,11 @@ class Rename extends Command implements PluginIdentifiableCommand{
         if(!$this->testPermission($sender)){
             return false;
         }
-        if($sender->getInventory()->getItemInHand() instanceof Air){
+        if($sender->getInventory()->getItemInHand()->getId() == 0){
             $sender->sendMessage($this->main->config['iteminhand']);
             return false;
         }
-        $this->main::openRenameForm($sender);
+        $this->main->openRenameForm($sender);
+        return true;
     }
 }

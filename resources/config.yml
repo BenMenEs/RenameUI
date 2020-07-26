@@ -5,12 +5,7 @@ iteminhand: "Take item in your hand"
 # {NEWNAME} - item new name
 rename-message: "You have successfully renamed the item to {NEWNAME}"
 #If the player has not entered a name
-empty-name: "Please, enter name"
-
-#Command description
-cmd-description: "RenameUI"
-#Command usage
-cmd-usage: "/rename"
+empty-name: "Please, input name"
 
 #Form title
 title: "RenameUI"
